@@ -1,10 +1,10 @@
 import Loader from 'components/pages/Loader/Loader';
 import React, { useEffect, useState } from 'react'
-import {  useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { PopularFilms } from 'services/api';
-import MovieList from '../MovieList/MovieList';
 
 import css from './Home.module.css'
+import PopularList from '../PopularList/PopularList';
 
 const HomePage = () => {
 
@@ -27,11 +27,13 @@ const HomePage = () => {
   }, [])
 
   return (
+    <>
       <div>
         {loader && <Loader />}
         <h1 className={css.title}>Tranding Today</h1>
-        <MovieList popularFilms={popularFilms} location={location} />
+        <PopularList popularFilms={popularFilms} location={location} />
       </div>
+    </>
   )
 }
 
