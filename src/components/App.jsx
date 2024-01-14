@@ -11,13 +11,14 @@ import { SharedLayout } from './pages/SharedLayout/SharedLayout';
 export const App = () => {
     return (
         <Routes>
-            <Route path="/" element={<SharedLayout />}/>
+            <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
             <Route path="/movies" element={<MoviePage />}/>
             <Route path="/movies/:movieId" element={<MovieDetails />} />
             <Route path="/movies/:movieId/cast" element={<CastPage />} />
             <Route path="/movies/:movieId/reviews" element={<ReviewsPage />} />
-            <Route path="*" element={<Navigate to="/" />} /> 
+                <Route path="*" element={<Navigate to="/" />} />
+            </Route>    
             </Routes>
     );
 };
