@@ -1,0 +1,12 @@
+.reviewsList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 600px;
+}
+
+.noReviews {
+    font-size: 20px;
+    text-align: center;
+}

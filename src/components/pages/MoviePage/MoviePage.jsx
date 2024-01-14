@@ -1,8 +1,10 @@
-import Loader from 'components/Loader';
+import Loader from 'components/pages/Loader/Loader';
 import React, { useEffect, useState } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
-import MovieList from './MovieList';
+import MovieList from '../MovieList/MovieList';
 import { searchForWord } from 'services/api';
+
+import css from './MoviePage.module.css'
 
 const MoviePage = () => {
 
@@ -46,15 +48,16 @@ const MoviePage = () => {
     return (
         <>
             <form onSubmit={onFormSubmit}>
-                <label>
+                <label className={css.form} >
                     <input
+                        className={css.formInput}
                         type="text"
-                        name="name"
+                        name="search"
                         value={inputValue}
                         onChange={onInputValue}
                         placeholder="Search movies"
                         required />
-                    <button>Search</button>
+                    <button className={css.formButton}>Search</button>
                 </label>
             </form>
             {loader ? (<Loader />) : (

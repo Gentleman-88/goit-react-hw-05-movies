@@ -1,0 +1,23 @@
+.castList {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 35px;
+}
+
+.actorImg {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.actorInfo {
+    background-color: rgba(240, 248, 255, 0.401);
+    padding: 5px 5px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.actorName {
+    font-weight: bold;
+}

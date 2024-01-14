@@ -1,7 +1,9 @@
-import Loader from 'components/Loader';
+import Loader from 'components/pages/Loader/Loader';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { searchForReviews } from 'services/api';
+
+import css from './Reviews.module.css'
 
 const ReviewsPage = () => {
 
@@ -28,7 +30,7 @@ const ReviewsPage = () => {
         (<Loader />) : (
                 reviews && 
                     reviews.length > 0 ? (
-                        <ul>
+                        <ul className={css.reviewsList}>
                             {reviews.map(review => 
                             <li key={review.id}>
                                 <h3>{review.author}</h3>
@@ -36,7 +38,7 @@ const ReviewsPage = () => {
                             </li>)}
                         </ul>
                     ) : (
-                        <p>We don't have any reviews for this movie</p>
+                        <p className={css.noReviews}>We don't have any reviews for this movie</p>
                     )
             )}
         </>

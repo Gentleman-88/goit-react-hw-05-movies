@@ -1,8 +1,10 @@
-import Loader from 'components/Loader';
+import Loader from 'components/pages/Loader/Loader';
 import React, { useEffect, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom';
+import {  useLocation } from 'react-router-dom';
 import { PopularFilms } from 'services/api';
-import MovieList from './MovieList';
+import MovieList from '../MovieList/MovieList';
+
+import css from './Home.module.css'
 
 const HomePage = () => {
 
@@ -25,17 +27,11 @@ const HomePage = () => {
   }, [])
 
   return (
-    <>
-      <header>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/movies">Movies</NavLink>
-      </header>
       <div>
         {loader && <Loader />}
-        <h1>Tranding Today</h1>
+        <h1 className={css.title}>Tranding Today</h1>
         <MovieList popularFilms={popularFilms} location={location} />
       </div>
-    </>
   )
 }
 

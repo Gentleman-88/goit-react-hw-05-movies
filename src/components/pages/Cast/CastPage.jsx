@@ -1,7 +1,9 @@
-import Loader from 'components/Loader';
+import Loader from 'components/pages/Loader/Loader';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { searchForCast } from 'services/api';
+
+import css from './Cast.module.css'
 
 const CastPage = () => {
 
@@ -27,12 +29,14 @@ const CastPage = () => {
       {loader && <Loader />}
 
       {castResult && (
-        <ul>
+        <ul className={css.castList}>
         {castResult?.map(actor =>
           <li key={castResult.some(child => child.id === actor.id)}>
-            <img src={`https://image.tmdb.org/t/p/w200/${actor.profile_path}`} alt="" />
-            <p>{actor.name}</p>
-            <p>Character: {actor.character}</p>
+            <img src={`https://image.tmdb.org/t/p/w200/${actor.profile_path}`} alt={actor.name} className={css.actorImg} />
+            <div className={css.actorInfo}>
+            <p className={css.actorName}>{actor.name}</p>
+              <p><span className={css.actorName}>Character:</span> {actor.character}</p>
+              </div>
           </li>
         )}
       </ul>
