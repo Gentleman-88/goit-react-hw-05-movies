@@ -27,6 +27,9 @@ const MoviePage = () => {
             } catch (error) {
                 console.log(error);
             }
+            finally {
+                setLoader(false);
+            }
         };
         searchReviewsFilms();
     }, [paramsForSearch]);

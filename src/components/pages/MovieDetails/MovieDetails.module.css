@@ -17,6 +17,10 @@
     background-color: aliceblue
 }
 
+.container {
+    display: flex;
+}
+
 .movieTitle {
     margin-left: 30px;
         font-size: 30px;
@@ -27,6 +31,7 @@
     margin-left: 30px;
     border-radius: 25px;
         width: 550px;
+        height: 315px;
         transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 
@@ -54,10 +59,9 @@
     margin: 0;
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 30px;
-    height: 265px;
-    max-width: 550px;
+    margin-left: 15px;
+    max-height: 350px;
+    max-width: 800px;
     background-color: rgba(240, 248, 255, 0.401);
     border-radius: 25px;
 }
@@ -71,11 +75,11 @@
 .additionalDiv {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin-left: 30px;
 }
 
 .additional {
-    color: black;
+    color: aliceblue;
         font-size: 20px;
         font-weight: bold;
 }

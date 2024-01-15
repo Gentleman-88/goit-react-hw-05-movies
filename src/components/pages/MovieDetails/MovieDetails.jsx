@@ -34,8 +34,9 @@ const MovieDetails = () => {
             <>
         <Link to={backlocation}>
         <button className={css.goBackButton}>Go back</button> 
-        </Link>
+          </Link>
           <h2 className={css.movieTitle}>{movie.title} ({movie.release_date.slice(0, 4)})</h2>
+          <div className={css.container}>
           <img src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} alt={movie.title} className={css.moviePoster} />
           <div className={css.movieInfoContainer}>
           <div className={css.movieInfo}>
@@ -44,6 +45,8 @@ const MovieDetails = () => {
             <p className={css.movieInformation}>{movie.overview}</p>
             <h3 className={css.subTitles}>Genres</h3>
             <p className={css.movieInformation}>{movie.genres.map(item => item.name).join(', ')}</p>
+              </div>
+            </div>
             </div>
             <div className={css.additionalDiv}>
             <p className={css.additional}>Additional information</p>
@@ -52,7 +55,6 @@ const MovieDetails = () => {
                 <li><Link to='reviews' className={css.additionalItem}>Revievs</Link></li>
               </ul>
               </div>
-            </div>
         <Suspense fallback={<Loader />}>
             <Outlet />
         </Suspense>
