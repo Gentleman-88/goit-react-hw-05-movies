@@ -1,22 +1,21 @@
-import Loader from 'components/pages/Loader/Loader';
+import Loader from 'components/Loader/Loader';
 import React, { useEffect, useState } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
-import MovieList from '../MovieList/MovieList';
+import MovieList from '../../MovieList/MovieList';
 import { searchForWord } from 'services/api';
 
-import css from './MoviePage.module.css'
+import SearchForm from 'components/SearchForm';
 
 const MoviePage = () => {
 
-    const [searchParams, setSearchParams] = useSearchParams();
-    const paramsForSearch = searchParams.size !== 0 ? searchParams.get("searchValue") : "";
+    const [searchParams] = useSearchParams();
+    const paramsForSearch = searchParams.get("searchValue");
     const [query, setQuery] = useState();
     const location = useLocation();
-    const [inputValue, setInputValue] = useState(paramsForSearch);
     const [loader, setLoader] = useState(true);
 
     useEffect(() => {
-        if (paramsForSearch === '') {
+        if (!paramsForSearch) {
             setLoader(false)
             return;
         }
@@ -34,35 +33,9 @@ const MoviePage = () => {
         searchReviewsFilms();
     }, [paramsForSearch]);
 
-
-    const onFormSubmit = (e) => {
-        e.preventDefault();
-        setLoader(true);
-        const searchData = e.currentTarget.elements.search.value;
-        setSearchParams({ searchValue: searchData });
-    };
-
-    const onInputValue = (e) => {
-        const value = e.currentTarget.value
-        setInputValue(value);
-    };
-
-
     return (
         <>
-            <form onSubmit={onFormSubmit}>
-                <label className={css.form} >
-                    <input
-                        className={css.formInput}
-                        type="text"
-                        name="search"
-                        value={inputValue}
-                        onChange={onInputValue}
-                        placeholder="Search movies"
-                        required />
-                    <button className={css.formButton}>Search</button>
-                </label>
-            </form>
+            <SearchForm />
             {loader ? (<Loader />) : (
                 paramsForSearch !== "" && <MovieList movieList={query} location={location} /> 
             )}

@@ -1,5 +1,5 @@
-import Loader from 'components/pages/Loader/Loader';
-import React, { Suspense, useEffect, useState } from 'react'
+import Loader from 'components/Loader/Loader';
+import React, { Suspense, useEffect, useRef, useState } from 'react'
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom'
 import { searchForId } from 'services/api';
 
@@ -11,7 +11,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState();
   const [loader, setLoader] = useState(true);
   const location = useLocation();
-  const [backlocation] = useState(location.state?.from ?? '/');
+  const backLinkLocation = useRef(location.state?.from ?? "/")
 
   useEffect(() => {
     const searchPopularFilms = async () => {
@@ -32,12 +32,12 @@ const MovieDetails = () => {
         {loader && <Loader />}
         {movie && (
             <>
-        <Link to={backlocation}>
+        <Link to={backLinkLocation.current}>
         <button className={css.goBackButton}>Go back</button> 
           </Link>
           <h2 className={css.movieTitle}>{movie.title} ({movie.release_date.slice(0, 4)})</h2>
           <div className={css.container}>
-          <img src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} alt={movie.title} className={css.moviePoster} />
+          <img src={movie.backdrop_path ? (`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`):('https://kartinki.pics/uploads/posts/2022-03/thumbs/1647105513_3-kartinkin-net-p-kartinki-so-znakom-voprosa-3.jpg')} alt={movie.title} className={css.moviePoster} />
           <div className={css.movieInfoContainer}>
           <div className={css.movieInfo}>
             <p className={css.userScore}>User Score: {String(movie.popularity).replace(/\./g, "").slice(0, 2)}%</p>
@@ -51,7 +51,7 @@ const MovieDetails = () => {
             <div className={css.additionalDiv}>
             <p className={css.additional}>Additional information</p>
             <ul className={css.additionalList}>
-                <li><Link to='cast' className={css.additionalItem}>Cast</Link></li>
+                <li><Link to='cast' state={{ from: location }}  className={css.additionalItem}>Cast</Link></li>
                 <li><Link to='reviews' className={css.additionalItem}>Revievs</Link></li>
               </ul>
               </div>

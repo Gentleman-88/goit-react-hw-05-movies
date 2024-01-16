@@ -1,4 +1,4 @@
-import Loader from 'components/pages/Loader/Loader';
+import Loader from 'components/Loader/Loader';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { searchForReviews } from 'services/api';
@@ -25,7 +25,7 @@ const ReviewsPage = () => {
   }, [movieId]);
 
   return (
-        <>
+    <>
       {loader ?
         (<Loader />) : (
                 reviews && 

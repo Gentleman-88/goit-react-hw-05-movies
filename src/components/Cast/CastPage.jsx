@@ -1,4 +1,4 @@
-import Loader from 'components/pages/Loader/Loader';
+import Loader from 'components/Loader/Loader';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { searchForCast } from 'services/api';
@@ -27,12 +27,11 @@ const CastPage = () => {
   return (
     <>
       {loader && <Loader />}
-
       {castResult && (
         <ul className={css.castList}>
         {castResult?.map(actor =>
           <li key={castResult.some(child => child.id === actor.id)}>
-            <img src={`https://image.tmdb.org/t/p/w200/${actor.profile_path}`} alt={actor.name} className={css.actorImg} />
+            <img src={actor.profile_path ? (`https://image.tmdb.org/t/p/w200/${actor.profile_path}`):('https://sneg.top/uploads/posts/2023-06/1687937930_sneg-top-p-avatarki-vatsapa-instagram-9.png')} alt={actor.name} className={css.actorImg} />
             <div className={css.actorInfo}>
             <p className={css.actorName}>{actor.name}</p>
               <p><span className={css.actorName}>Character:</span> {actor.character}</p>
